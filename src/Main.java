@@ -3,7 +3,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        new Thread(() -> System.out.println("From runnable")).start();
+//        new Thread(() -> System.out.println("From runnable")).start();
 
         Employee john = new Employee("dasdasd", 23);
         Employee john2 = new Employee("dxczcxzx", 33);
@@ -12,12 +12,15 @@ public class Main {
         employees.add(john);
         employees.add(john2);
 
-        Collections.sort(employees, new Comparator<Employee>() {
-            @Override
-            public int compare(Employee o1, Employee o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        });
+//        Collections.sort(employees, new Comparator<Employee>() {
+//            @Override
+//            public int compare(Employee o1, Employee o2) {
+//                return o1.getName().compareTo(o2.getName());
+//            }
+//        });
+
+        Collections.sort(employees, (employee1, employee2) ->
+            employee1.getName().compareTo(employee2.getName()));
 
         for (Employee employee : employees) {
             System.out.println(employee.getName());
