@@ -2,6 +2,7 @@ package lambdas;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Main {
 
@@ -18,24 +19,18 @@ public class Main {
         employees.add(john3);
         employees.add(john4);
 
-        System.out.println("Employees older than 30");
+        printEmployeesByAge(employees, "Employees over 30", employee -> employee.getAge() > 30);
+        printEmployeesByAge(employees, "Employees 30 and under", employee -> employee.getAge() <= 30);
 
-        employees.forEach(employee -> {
-            if (employee.getAge() > 30)
+    }
+
+    private static void printEmployeesByAge(List<Employee> employees, String ageText, Predicate<Employee> ageCondition) {
+        System.out.println(ageText);
+
+        for (Employee employee: employees) {
+            if (ageCondition.test(employee)) {
                 System.out.println(employee.getName());
-        });
-
-        System.out.println("\nEmployees 30 and younger");
-
-        employees.forEach(employee -> {
-            if (employee.getAge() <= 30)
-                System.out.println(employee.getName());
-        });
-
-//        for (Employee employee : employees) {
-//            if(employee.getAge() > 30) {
-//                System.out.println(employee.getName());
-//            }
-//        }
+            }
+        }
     }
 }
